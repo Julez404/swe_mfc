@@ -185,13 +185,34 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Bauelement.h" />
+    <ClInclude Include="Complex.h" />
+    <ClInclude Include="ImpedanzRechner.h" />
+    <ClInclude Include="ImpedanzRechner_Parallel.h" />
+    <ClInclude Include="ImpedanzRechner_Serie.h" />
+    <ClInclude Include="Kap.h" />
+    <ClInclude Include="Liste.h" />
+    <ClInclude Include="ListeTemp.h" />
+    <ClInclude Include="Punkt.h" />
     <ClInclude Include="Resource.h" />
+    <ClInclude Include="Spule.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="swe.h" />
     <ClInclude Include="sweDlg.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="Widerstand.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Bauelement.cpp" />
+    <ClCompile Include="Complex.cpp" />
+    <ClCompile Include="ImpedanzRechner.cpp" />
+    <ClCompile Include="ImpedanzRechner_Parallel.cpp" />
+    <ClCompile Include="ImpedanzRechner_Serie.cpp" />
+    <ClCompile Include="Kap.cpp" />
+    <ClCompile Include="Liste.cpp" />
+    <ClCompile Include="ListeTemp.cpp" />
+    <ClCompile Include="Punkt.cpp" />
+    <ClCompile Include="Spule.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -200,6 +221,7 @@
     </ClCompile>
     <ClCompile Include="swe.cpp" />
     <ClCompile Include="sweDlg.cpp" />
+    <ClCompile Include="Widerstand.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="swe.rc" />
