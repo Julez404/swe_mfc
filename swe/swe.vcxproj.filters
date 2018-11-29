@@ -120,6 +120,7 @@
     <None Include="res\swe.rc2">
       <Filter>Ressourcendateien</Filter>
     </None>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\swe.ico">

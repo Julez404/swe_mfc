@@ -6,6 +6,14 @@
 #include "swe.h"
 #include "sweDlg.h"
 #include "afxdialogex.h"
+#include "Bauelement.h"
+#include "Widerstand.h"
+#include "Kap.h"
+#include "Spule.h"
+#include "ImpedanzRechner.h"
+#include "ImpedanzRechner_Serie.h"
+#include "ImpedanzRechner_Parallel.h"
+#include "Liste.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -51,6 +59,9 @@ END_MESSAGE_MAP()
 
 CsweDlg::CsweDlg(CWnd* pParent /*=NULL*/)
 	: CDialogEx(IDD_SWE_DIALOG, pParent)
+	, input_2(0)
+	, input_1(0)
+	, output_1(0)
 {
 	m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
 }
@@ -58,12 +69,22 @@ CsweDlg::CsweDlg(CWnd* pParent /*=NULL*/)
 void CsweDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialogEx::DoDataExchange(pDX);
+	//  DDX_Text(pDX, IDC_EDIT2, input_1);
+	DDX_Text(pDX, IDC_EDIT1, input_2);
+	DDX_Text(pDX, IDC_EDIT2, input_1);
+	DDX_Text(pDX, IDC_EDIT3, output_1);
+	DDX_Control(pDX, IDC_COMBO1, operationType);
 }
 
 BEGIN_MESSAGE_MAP(CsweDlg, CDialogEx)
 	ON_WM_SYSCOMMAND()
 	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
+	ON_BN_CLICKED(IDC_BUTTON1, &CsweDlg::OnBnClickedButton1)
+	ON_EN_CHANGE(IDC_EDIT1, &CsweDlg::OnEnChangeEdit1)
+	ON_EN_CHANGE(IDC_EDIT2, &CsweDlg::OnEnChangeEdit2)
+	ON_EN_CHANGE(IDC_EDIT3, &CsweDlg::OnEnChangeEdit3)
+	ON_CBN_SELCHANGE(IDC_COMBO1, &CsweDlg::OnCbnSelchangeCombo1)
 END_MESSAGE_MAP()
 
 
@@ -152,3 +173,34 @@ HCURSOR CsweDlg::OnQueryDragIcon()
 	return static_cast<HCURSOR>(m_hIcon);
 }
 
+
+void CsweDlg::OnBnClickedButton1()
+{
+	output_1 = input_1 + input_2;
+	UpdateData(false);
+}
+
+
+void CsweDlg::OnEnChangeEdit1()
+{
+	UpdateData(true);
+}
+
+
+void CsweDlg::OnEnChangeEdit2()
+{
+	UpdateData(true);
+}
+
+
+void CsweDlg::OnEnChangeEdit3()
+{
+
+}
+
+
+void CsweDlg::OnCbnSelchangeCombo1()
+{
+	operationType.
+	UpdateData(true);
+}

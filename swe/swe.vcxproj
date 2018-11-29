@@ -227,6 +227,7 @@
     <ResourceCompile Include="swe.rc" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="ClassDiagram.cd" />
     <None Include="res\swe.rc2" />
   </ItemGroup>
   <ItemGroup>
@@ -235,4 +236,9 @@
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties RESOURCE_FILE="swe.rc" />
+    </VisualStudio>
+  </ProjectExtensions>
 </Project>

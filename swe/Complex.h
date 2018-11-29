@@ -29,9 +29,5 @@ public:
 
 };
 
-
-std::ostream& operator<<(std::ostream& stream, const CComplex& _complex);
-
-
 #endif // !_CCOMPLEX
 
