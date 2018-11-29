@@ -27,12 +27,12 @@ class CAboutDlg : public CDialogEx
 public:
 	CAboutDlg();
 
-// Dialogfelddaten
+	// Dialogfelddaten
 #ifdef AFX_DESIGN_TIME
 	enum { IDD = IDD_ABOUTBOX };
 #endif
 
-	protected:
+protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV-Unterstützung
 
 // Implementierung
@@ -62,6 +62,7 @@ CsweDlg::CsweDlg(CWnd* pParent /*=NULL*/)
 	, input_2(0)
 	, input_1(0)
 	, output_1(0)
+	, mathOperation(0)
 {
 	m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
 }
@@ -73,7 +74,7 @@ void CsweDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Text(pDX, IDC_EDIT1, input_2);
 	DDX_Text(pDX, IDC_EDIT2, input_1);
 	DDX_Text(pDX, IDC_EDIT3, output_1);
-	DDX_Control(pDX, IDC_COMBO1, operationType);
+	DDX_Radio(pDX, IDC_RADIO1, mathOperation);
 }
 
 BEGIN_MESSAGE_MAP(CsweDlg, CDialogEx)
@@ -81,10 +82,7 @@ BEGIN_MESSAGE_MAP(CsweDlg, CDialogEx)
 	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
 	ON_BN_CLICKED(IDC_BUTTON1, &CsweDlg::OnBnClickedButton1)
-	ON_EN_CHANGE(IDC_EDIT1, &CsweDlg::OnEnChangeEdit1)
-	ON_EN_CHANGE(IDC_EDIT2, &CsweDlg::OnEnChangeEdit2)
-	ON_EN_CHANGE(IDC_EDIT3, &CsweDlg::OnEnChangeEdit3)
-	ON_CBN_SELCHANGE(IDC_COMBO1, &CsweDlg::OnCbnSelchangeCombo1)
+	ON_BN_CLICKED(IDOK, &CsweDlg::OnBnClickedOk)
 END_MESSAGE_MAP()
 
 
@@ -113,6 +111,9 @@ BOOL CsweDlg::OnInitDialog()
 			pSysMenu->AppendMenu(MF_STRING, IDM_ABOUTBOX, strAboutMenu);
 		}
 	}
+
+	mathOperation = 3;
+	UpdateData(false);
 
 	// Symbol für dieses Dialogfeld festlegen.  Wird automatisch erledigt
 	//  wenn das Hauptfenster der Anwendung kein Dialogfeld ist
@@ -176,31 +177,34 @@ HCURSOR CsweDlg::OnQueryDragIcon()
 
 void CsweDlg::OnBnClickedButton1()
 {
-	output_1 = input_1 + input_2;
+	UpdateData(true);
+	enum MyEnum
+	{
+		addieren,subtrahieren,multiplizieren,dividieren
+	};
+	switch (mathOperation)
+	{
+	case addieren:
+		output_1 = input_1 + input_2;
+		break;
+	case subtrahieren:
+		output_1 = input_1 - input_2;
+		break;
+	case multiplizieren:
+		output_1 = input_1 * input_2;
+		break;
+	case dividieren:
+		output_1 = input_1 / input_2;
+		break;
+	default:
+		break;
+	}
 	UpdateData(false);
 }
 
 
-void CsweDlg::OnEnChangeEdit1()
+void CsweDlg::OnBnClickedOk()
 {
-	UpdateData(true);
-}
-
-
-void CsweDlg::OnEnChangeEdit2()
-{
-	UpdateData(true);
-}
-
-
-void CsweDlg::OnEnChangeEdit3()
-{
-
-}
-
-
-void CsweDlg::OnCbnSelchangeCombo1()
-{
-	operationType.
-	UpdateData(true);
+	// TODO: Fügen Sie hier Ihren Kontrollbehandlungscode für die Benachrichtigung ein.
+	CDialogEx::OnOK();
 }

@@ -34,13 +34,9 @@ protected:
 	DECLARE_MESSAGE_MAP()
 public:
 	afx_msg void OnBnClickedButton1();
-	afx_msg void OnEnChangeEdit1();
-	afx_msg void OnEnChangeEdit2();
-	afx_msg void OnEnChangeEdit3();
-//	CString input_1;
 	int input_1;
 	int input_2;
 	int output_1;
-	afx_msg void OnCbnSelchangeCombo1();
-	CComboBox operationType;
+	afx_msg void OnBnClickedOk();
+	int mathOperation;
 };
