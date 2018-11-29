@@ -31,11 +31,5 @@ void CWiderstand::setR(double _r)
 
 void CWiderstand::print(void) const
 {
-	std::cout << "Bez.: " << name << " Preis: " << preis << " EUR  Position: " << position << " R: " << r << " Ohm" <<  std::endl;
-}
-
-std::ostream& operator<<(std::ostream& stream, CWiderstand toPrint)
-{
-	stream << toPrint.name << ", " << toPrint.r << "Ohm, " << toPrint.preis << "EUR, " << toPrint.position;
-	return stream;
+	//std::cout << "Bez.: " << name << " Preis: " << preis << " EUR  Position: " << position << " R: " << r << " Ohm" <<  std::endl;
 }

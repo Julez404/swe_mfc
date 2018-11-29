@@ -150,15 +150,3 @@ void CListe::setImpPtr(ImpedanzRechner* _ImpPtr)
 {
 	ImpPtr = _ImpPtr;
 }
-
-std::ostream& operator<<(std::ostream& stream, const CListe& _list)
-{
-	CBauelement* ptr = _list.start;
-	while (ptr != NULL)
-	{
-		stream << (*ptr);
-		stream << std::endl;
-		ptr = ptr->getNext();
-	}
-	return stream;
-}

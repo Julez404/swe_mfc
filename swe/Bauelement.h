@@ -28,5 +28,4 @@ public:
 	void setPosition(CPunkt _position);
 	void setNext(CBauelement* _next);
 
-	friend std::ostream& operator<<(std::ostream& stream, const CBauelement& _bauelement);
 };

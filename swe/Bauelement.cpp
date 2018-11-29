@@ -57,9 +57,3 @@ void CBauelement::setNext(CBauelement* _next)
 {
 	next = _next;
 }
-
-std::ostream& operator<<(std::ostream& stream, const CBauelement& _bauelement)
-{
-	stream << "Bez.: " << _bauelement.name << " Preis: " << _bauelement.preis << " EUR  Position: " << _bauelement.position;
-	return stream;
-}
