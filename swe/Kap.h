@@ -11,7 +11,7 @@ protected:
 
 public:
 	CKap();
-	CKap(std::string _name, double _preis, CPunkt _position, double _c);
+	CKap(CString _name, double _preis, CPunkt _position, double _c);
 	~CKap();
 
 	double getC() const;

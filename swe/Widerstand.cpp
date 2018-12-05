@@ -7,7 +7,7 @@ CWiderstand::CWiderstand()
 	r = 0.0;
 }
 
-CWiderstand::CWiderstand(std::string _name, double _preis, CPunkt _position, double _r)
+CWiderstand::CWiderstand(CString _name, double _preis, CPunkt _position, double _r)
 :CBauelement(_name,_preis,_position),r(_r)
 {}
 

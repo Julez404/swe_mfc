@@ -6,7 +6,7 @@ CSpule::CSpule()
 	:CBauelement(), l(0)	
 {}
 
-CSpule::CSpule(std::string _name, double _preis, CPunkt _position, double _l)
+CSpule::CSpule(CString _name, double _preis, CPunkt _position, double _l)
 	: CBauelement(_name, _preis, _position), l(_l)
 {}
 

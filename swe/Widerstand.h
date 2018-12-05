@@ -10,7 +10,7 @@ protected:
 	double r;
 public:
 	CWiderstand();
-	CWiderstand(std::string _name, double _preis, CPunkt _position, double _r);
+	CWiderstand(CString _name, double _preis, CPunkt _position, double _r);
 	~CWiderstand();
 
 	double getR() const;

@@ -49,7 +49,7 @@ void CListe::printAllElements(void) const
 	}
 }
 
-CBauelement* CListe::searchName(const std::string& _nameToFind) const
+CBauelement* CListe::searchName(const CString& _nameToFind) const
 {
 	CBauelement* nameSearchPtr = start;
 	while (nameSearchPtr != NULL)

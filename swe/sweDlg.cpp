@@ -59,10 +59,15 @@ END_MESSAGE_MAP()
 
 CsweDlg::CsweDlg(CWnd* pParent /*=NULL*/)
 	: CDialogEx(IDD_SWE_DIALOG, pParent)
-	, input_2(0)
-	, input_1(0)
-	, output_1(0)
-	, mathOperation(0)
+	, newRes(10)
+	, mouseX(0)
+	, mouseY(0)
+	, newPreis(0.15)
+	, frequency(50)
+	, newL(53)
+	, newC(870)
+	, newName(_T(""))
+	, ListePtr(NULL)
 {
 	m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
 }
@@ -70,19 +75,26 @@ CsweDlg::CsweDlg(CWnd* pParent /*=NULL*/)
 void CsweDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialogEx::DoDataExchange(pDX);
-	//  DDX_Text(pDX, IDC_EDIT2, input_1);
-	DDX_Text(pDX, IDC_EDIT1, input_2);
-	DDX_Text(pDX, IDC_EDIT2, input_1);
-	DDX_Text(pDX, IDC_EDIT3, output_1);
-	DDX_Radio(pDX, IDC_RADIO1, mathOperation);
+	DDX_Text(pDX, IDC_EDIT1, newRes);
+	DDX_Text(pDX, IDC_EDIT2, mouseX);
+	DDX_Text(pDX, IDC_EDIT3, mouseY);
+	DDX_Text(pDX, IDC_EDIT6, newPreis);
+	DDX_Text(pDX, IDC_EDIT7, frequency);
+	DDV_MinMaxDouble(pDX, frequency, 0, DBL_MAX);
+	DDX_Text(pDX, IDC_EDIT4, newL);
+	DDX_Text(pDX, IDC_EDIT5, newC);
+	DDX_Text(pDX, IDC_EDIT8, newName);
 }
 
 BEGIN_MESSAGE_MAP(CsweDlg, CDialogEx)
 	ON_WM_SYSCOMMAND()
 	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
-	ON_BN_CLICKED(IDC_BUTTON1, &CsweDlg::OnBnClickedButton1)
 	ON_BN_CLICKED(IDOK, &CsweDlg::OnBnClickedOk)
+	ON_BN_CLICKED(IDC_BUTTON1, &CsweDlg::OnBnClickedWiderstand)
+	ON_WM_MOUSEMOVE()
+	ON_BN_CLICKED(IDC_BUTTON2, &CsweDlg::OnBnClickedSpule)
+	ON_BN_CLICKED(IDC_BUTTON3, &CsweDlg::OnBnClickedKap)
 END_MESSAGE_MAP()
 
 
@@ -91,6 +103,8 @@ END_MESSAGE_MAP()
 BOOL CsweDlg::OnInitDialog()
 {
 	CDialogEx::OnInitDialog();
+
+	ListePtr = new CListe;
 
 	// Hinzufügen des Menübefehls "Info..." zum Systemmenü.
 
@@ -112,8 +126,6 @@ BOOL CsweDlg::OnInitDialog()
 		}
 	}
 
-	mathOperation = 3;
-	UpdateData(false);
 
 	// Symbol für dieses Dialogfeld festlegen.  Wird automatisch erledigt
 	//  wenn das Hauptfenster der Anwendung kein Dialogfeld ist
@@ -175,36 +187,44 @@ HCURSOR CsweDlg::OnQueryDragIcon()
 }
 
 
-void CsweDlg::OnBnClickedButton1()
-{
-	UpdateData(true);
-	enum MyEnum
-	{
-		addieren,subtrahieren,multiplizieren,dividieren
-	};
-	switch (mathOperation)
-	{
-	case addieren:
-		output_1 = input_1 + input_2;
-		break;
-	case subtrahieren:
-		output_1 = input_1 - input_2;
-		break;
-	case multiplizieren:
-		output_1 = input_1 * input_2;
-		break;
-	case dividieren:
-		output_1 = input_1 / input_2;
-		break;
-	default:
-		break;
-	}
-	UpdateData(false);
-}
-
 
 void CsweDlg::OnBnClickedOk()
 {
 	// TODO: Fügen Sie hier Ihren Kontrollbehandlungscode für die Benachrichtigung ein.
 	CDialogEx::OnOK();
+}
+
+
+
+void CsweDlg::OnBnClickedWiderstand()
+{
+	UpdateData(true);
+	ListePtr->addToStart(new CWiderstand(newName, newPreis,CPunkt(mouseX,mouseY),newRes));
+
+}
+
+void CsweDlg::OnMouseMove(UINT nFlags, CPoint point)
+{
+	if (nFlags & MK_LBUTTON)
+	{
+		mouseX = point.x;
+		mouseY = point.y;
+		UpdateData(false);
+	}
+	CDialogEx::OnMouseMove(nFlags, point);
+
+}
+
+
+void CsweDlg::OnBnClickedSpule()
+{
+	UpdateData(true);
+	ListePtr->addToStart(new CSpule(newName, newPreis, CPunkt(mouseX, mouseY), newL));
+}
+
+
+void CsweDlg::OnBnClickedKap()
+{
+	UpdateData(true);
+	ListePtr->addToStart(new CSpule(newName, newPreis, CPunkt(mouseX, mouseY), newC));
 }

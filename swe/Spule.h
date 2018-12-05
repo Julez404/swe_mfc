@@ -9,7 +9,7 @@ protected:
 	double l;
 public:
 	CSpule();
-	CSpule(std::string _name, double _preis, CPunkt _position, double _l);
+	CSpule(CString _name, double _preis, CPunkt _position, double _l);
 	~CSpule();
 
 	double getL() const;
@@ -18,5 +18,4 @@ public:
 
 	void setL(double _l);
 
-	friend std::ostream& operator<<(std::ostream& stream, CSpule toPrint);
 };

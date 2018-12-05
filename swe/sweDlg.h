@@ -4,6 +4,7 @@
 
 #pragma once
 #include "afxwin.h"
+#include "Liste.h"
 
 
 // CsweDlg-Dialogfeld
@@ -33,10 +34,29 @@ protected:
 	afx_msg HCURSOR OnQueryDragIcon();
 	DECLARE_MESSAGE_MAP()
 public:
-	afx_msg void OnBnClickedButton1();
-	int input_1;
-	int input_2;
-	int output_1;
 	afx_msg void OnBnClickedOk();
-	int mathOperation;
+
+private:
+
+public:
+private:
+	double newRes;
+public:
+	afx_msg void OnBnClickedWiderstand();
+private:
+	UINT mouseX;
+	UINT mouseY;
+public:
+	afx_msg void OnMouseMove(UINT nFlags, CPoint point);
+	double newPreis;
+	double frequency;
+private:
+	double newL;
+	double newC;
+public:
+	afx_msg void OnBnClickedSpule();
+	afx_msg void OnBnClickedKap();
+private:
+	CString newName;
+	CListe* ListePtr;
 };

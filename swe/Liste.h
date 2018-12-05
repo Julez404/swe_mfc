@@ -17,7 +17,7 @@ public:
 	CBauelement* CListe::getStart(void) const;
 	int  getEntryCount(void)const;
 	void printAllElements(void) const;
-	CBauelement* searchName(const std::string& _nameToFind) const;
+	CBauelement* searchName(const CString& _nameToFind) const;
 	CComplex getSerialImpedanz(double _f) const;
 	CComplex getImpedanzOfList(double _f) const;
 

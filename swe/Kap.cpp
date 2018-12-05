@@ -6,7 +6,7 @@ CKap::CKap()
 	:CBauelement(), c(0)
 {}
 
-CKap::CKap(std::string _name, double _preis, CPunkt _position, double _c)
+CKap::CKap(CString _name, double _preis, CPunkt _position, double _c)
 	:CBauelement(_name, _preis, _position),c(_c)
 {}
 
