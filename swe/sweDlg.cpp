@@ -68,6 +68,9 @@ CsweDlg::CsweDlg(CWnd* pParent /*=NULL*/)
 	, newC(870)
 	, newName(_T(""))
 	, ListePtr(NULL)
+	, impedanzTyp(0)
+	, mCalculatedReal(0)
+	, mCalculatedImag(0)
 {
 	m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
 }
@@ -84,6 +87,11 @@ void CsweDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Text(pDX, IDC_EDIT4, newL);
 	DDX_Text(pDX, IDC_EDIT5, newC);
 	DDX_Text(pDX, IDC_EDIT8, newName);
+	DDX_Control(pDX, IDC_LIST1, bListe);
+	DDX_Radio(pDX, IDC_RADIO1, impedanzTyp);
+	DDV_MinMaxInt(pDX, impedanzTyp, 0, 1);
+	DDX_Text(pDX, IDC_EDIT9, mCalculatedReal);
+	DDX_Text(pDX, IDC_EDIT10, mCalculatedImag);
 }
 
 BEGIN_MESSAGE_MAP(CsweDlg, CDialogEx)
@@ -95,6 +103,7 @@ BEGIN_MESSAGE_MAP(CsweDlg, CDialogEx)
 	ON_WM_MOUSEMOVE()
 	ON_BN_CLICKED(IDC_BUTTON2, &CsweDlg::OnBnClickedSpule)
 	ON_BN_CLICKED(IDC_BUTTON3, &CsweDlg::OnBnClickedKap)
+	ON_BN_CLICKED(IDC_BUTTON4, &CsweDlg::OnBnClickedBerechneImpedanz)
 END_MESSAGE_MAP()
 
 
@@ -103,8 +112,6 @@ END_MESSAGE_MAP()
 BOOL CsweDlg::OnInitDialog()
 {
 	CDialogEx::OnInitDialog();
-
-	ListePtr = new CListe;
 
 	// Hinzufügen des Menübefehls "Info..." zum Systemmenü.
 
@@ -126,13 +133,19 @@ BOOL CsweDlg::OnInitDialog()
 		}
 	}
 
-
 	// Symbol für dieses Dialogfeld festlegen.  Wird automatisch erledigt
 	//  wenn das Hauptfenster der Anwendung kein Dialogfeld ist
 	SetIcon(m_hIcon, TRUE);			// Großes Symbol verwenden
 	SetIcon(m_hIcon, FALSE);		// Kleines Symbol verwenden
 
 	// TODO: Hier zusätzliche Initialisierung einfügen
+
+	ListePtr = new CListe;
+	Parallel_Rechner = new ImpedanzRechner_Parallel;
+	Serie_Rechner = new ImpedanzRechner_Serie;
+	impedanzTyp = 1;
+	UpdateData(false);
+
 
 	return TRUE;  // TRUE zurückgeben, wenn der Fokus nicht auf ein Steuerelement gesetzt wird
 }
@@ -199,8 +212,8 @@ void CsweDlg::OnBnClickedOk()
 void CsweDlg::OnBnClickedWiderstand()
 {
 	UpdateData(true);
-	ListePtr->addToStart(new CWiderstand(newName, newPreis,CPunkt(mouseX,mouseY),newRes));
-
+	ListePtr->addToStart(new CWiderstand(newName, newPreis, CPunkt(mouseX, mouseY), newRes));
+	bListe.AddString(ListePtr->getStart()->getName());
 }
 
 void CsweDlg::OnMouseMove(UINT nFlags, CPoint point)
@@ -220,11 +233,35 @@ void CsweDlg::OnBnClickedSpule()
 {
 	UpdateData(true);
 	ListePtr->addToStart(new CSpule(newName, newPreis, CPunkt(mouseX, mouseY), newL));
+	bListe.AddString(ListePtr->getStart()->getName());
 }
 
 
 void CsweDlg::OnBnClickedKap()
 {
 	UpdateData(true);
-	ListePtr->addToStart(new CSpule(newName, newPreis, CPunkt(mouseX, mouseY), newC));
+	ListePtr->addToStart(new CKap(newName, newPreis, CPunkt(mouseX, mouseY), newC));
+	bListe.AddString(ListePtr->getStart()->getName());
+}
+
+void CsweDlg::OnBnClickedBerechneImpedanz()
+{
+	UpdateData(true);
+	CComplex result;
+	enum { serie, reihe };
+	switch (impedanzTyp)
+	{
+	case serie:
+		ListePtr->setImpPtr(Serie_Rechner);
+		break;
+	case reihe:
+		ListePtr->setImpPtr(Parallel_Rechner);
+		break;
+	default:
+		break;
+	}
+	result = ListePtr->getImpedanzOfList(frequency);
+	mCalculatedReal = result.getReal();
+	mCalculatedImag = result.getImag();
+	UpdateData(false);
 }

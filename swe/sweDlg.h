@@ -59,4 +59,15 @@ public:
 private:
 	CString newName;
 	CListe* ListePtr;
+	CListBox bListe;
+public:
+	afx_msg void OnBnClickedBerechneImpedanz();
+private:
+	int impedanzTyp;
+	double mCalculatedReal;
+	double mCalculatedImag;
+private:
+	ImpedanzRechner* Parallel_Rechner;
+	ImpedanzRechner* Serie_Rechner;
+
 };

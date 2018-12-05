@@ -36,7 +36,6 @@ public:
 	template<class T, class K>
 	CListe search(T _searchObj, T (*fktPtr)(K&)) const;
 	*/
-	friend std::ostream& operator<<(std::ostream& stream, const CListe& _list);
 };
 
 
