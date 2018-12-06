@@ -75,6 +75,13 @@ CsweDlg::CsweDlg(CWnd* pParent /*=NULL*/)
 	m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
 }
 
+CsweDlg::~CsweDlg()
+{
+	delete ListePtr;
+	delete Parallel_Rechner;
+	delete Serie_Rechner;
+}
+
 void CsweDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialogEx::DoDataExchange(pDX);
@@ -149,6 +156,8 @@ BOOL CsweDlg::OnInitDialog()
 
 	return TRUE;  // TRUE zurückgeben, wenn der Fokus nicht auf ein Steuerelement gesetzt wird
 }
+
+
 
 void CsweDlg::OnSysCommand(UINT nID, LPARAM lParam)
 {

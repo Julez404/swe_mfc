@@ -13,7 +13,7 @@ class CsweDlg : public CDialogEx
 // Konstruktion
 public:
 	CsweDlg(CWnd* pParent = NULL);	// Standardkonstruktor
-
+	~CsweDlg();
 // Dialogfelddaten
 #ifdef AFX_DESIGN_TIME
 	enum { IDD = IDD_SWE_DIALOG };
