@@ -66,6 +66,12 @@
     <ClInclude Include="Spule.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
+    <ClInclude Include="Graph.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="data.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="swe.cpp">
@@ -108,6 +114,12 @@
       <Filter>Quelldateien</Filter>
     </ClCompile>
     <ClCompile Include="Spule.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="data.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="Graph.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
   </ItemGroup>

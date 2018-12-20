@@ -187,6 +187,8 @@
   <ItemGroup>
     <ClInclude Include="Bauelement.h" />
     <ClInclude Include="Complex.h" />
+    <ClInclude Include="data.h" />
+    <ClInclude Include="Graph.h" />
     <ClInclude Include="ImpedanzRechner.h" />
     <ClInclude Include="ImpedanzRechner_Parallel.h" />
     <ClInclude Include="ImpedanzRechner_Serie.h" />
@@ -205,6 +207,8 @@
   <ItemGroup>
     <ClCompile Include="Bauelement.cpp" />
     <ClCompile Include="Complex.cpp" />
+    <ClCompile Include="data.cpp" />
+    <ClCompile Include="Graph.cpp" />
     <ClCompile Include="ImpedanzRechner.cpp" />
     <ClCompile Include="ImpedanzRechner_Parallel.cpp" />
     <ClCompile Include="ImpedanzRechner_Serie.cpp" />
