@@ -71,6 +71,7 @@ CsweDlg::CsweDlg(CWnd* pParent /*=NULL*/)
 	, impedanzTyp(0)
 	, mCalculatedReal(0)
 	, mCalculatedImag(0)
+	, mGraph(10,10,WIDTH_OF_GRAPH,HEIGHT_OF_GRAPH,BOUNDRY_OF_GRAPH,RGB(0,0,255))
 {
 	m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
 }
@@ -198,6 +199,8 @@ void CsweDlg::OnPaint()
 	else
 	{
 		CDialogEx::OnPaint();
+		CClientDC _cd(this);
+		mGraph.drawBackground(&_cd);
 	}
 }
 

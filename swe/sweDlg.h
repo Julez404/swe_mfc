@@ -3,8 +3,15 @@
 //
 
 #pragma once
+
+#define WIDTH_OF_GRAPH 1500
+#define HEIGHT_OF_GRAPH 500
+#define BOUNDRY_OF_GRAPH 30
+
+
 #include "afxwin.h"
 #include "Liste.h"
+#include "Graph.h"
 
 
 // CsweDlg-Dialogfeld
@@ -70,4 +77,5 @@ private:
 	ImpedanzRechner* Parallel_Rechner;
 	ImpedanzRechner* Serie_Rechner;
 
+	CGraph mGraph;
 };
